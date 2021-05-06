@@ -5,8 +5,10 @@ import ru.etu.monitoring.model.data.User
 import ru.etu.monitoring.model.network.BaseRepository
 import ru.etu.monitoring.model.network.data.request.ConfirmLoginRequest
 import ru.etu.monitoring.model.network.data.request.LoginRequest
+import ru.etu.monitoring.model.network.data.request.SignUpRequest
 import ru.etu.monitoring.model.network.data.response.ConfirmLoginResponse
 import ru.etu.monitoring.model.network.data.response.LoginResponse
+import ru.etu.monitoring.model.network.data.response.SignUpResponse
 
 class UserRepository(val api: UserApi) : BaseRepository() {
     val isAuthorized: Boolean
@@ -23,6 +25,21 @@ class UserRepository(val api: UserApi) : BaseRepository() {
 
     fun confirmLogin(phone: String, code: String): Observable<ConfirmLoginResponse> {
         return userApi.confirmLogin(ConfirmLoginRequest(phone, code))
+            .compose(handleErrors())
+            .doOnNext {
+                userPreferences.authToken = it.token
+            }
+    }
+
+    fun signUp(
+        firstName: String,
+        lastName: String,
+        middleName: String,
+        birthday: String,
+        code: String,
+        phone: String
+    ): Observable<SignUpResponse> {
+        return userApi.signUp(SignUpRequest(phone,firstName,lastName,middleName,birthday,code))
             .compose(handleErrors())
             .doOnNext {
                 userPreferences.authToken = it.token

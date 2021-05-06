@@ -6,7 +6,6 @@
     android:fitsSystemWindows="true"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:weightSum="3"
     tools:context=".ui.activity.auth.AuthActivity">
 
     <com.google.android.material.textfield.TextInputLayout

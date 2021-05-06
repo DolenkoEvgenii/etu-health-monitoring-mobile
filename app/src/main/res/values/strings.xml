@@ -15,4 +15,9 @@
     <string name="sign_in">Войти</string>
     <string name="entrance">Вход</string>
     <string name="confirm">Подтвердить</string>
+    <string name="to_register">Зарегестрироваться</string>
+    <string name="firstname">Имя</string>
+    <string name="lastname">Фамилия</string>
+    <string name="middlename">Отчество</string>
+    <string name="birthday">Дата рождения</string>
 </resources>

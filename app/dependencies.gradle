@@ -1,0 +1,243 @@
+ext {
+    versions = [
+            appCompat            : '1.2.0-beta01',
+            multiDex             : '2.0.1',
+            materialDesign       : '1.2.0-alpha06',
+            cardView             : '1.0.0',
+            recyclerView         : '1.2.0-alpha01',
+            gridLayout           : '1.0.0',
+            fragmentKtx          : '1.3.0-alpha04',
+            ktx                  : '1.3.0-rc01',
+            coroutines           : '1.3.5',
+            lifecycleExt         : '2.2.0',
+
+            firebaseCore         : '17.2.3',
+            firebaseMessaging    : '20.1.2',
+            playLocation         : '17.0.0',
+
+            rxKotlin             : '3.0.0-RC1',
+            rxAndroid            : '3.0.0',
+            rxJava               : '3.0.0',
+            rxPermissions        : '0.10.2',
+            rxPreferences        : '2.0.0',
+            rxBinding            : '3.1.0',
+            rxLifecycle          : '3.1.0',
+
+            materialDialog       : '3.3.0',
+            drawer               : '8.0.0-rc01',
+            flexBox              : '2.0.1',
+            sweetAlert           : '1.5.6',
+            circleIndicator      : '2.1.4',
+            gestureViews         : '2.6.0',
+            toasty               : '1.4.2',
+            segmentControl       : '1.0.6',
+            circleImageView      : '3.1.0',
+
+            youtubePlayer        : '10.0.5',
+            videoPlayer          : '7.0.5',
+            videoView            : '1.1.0@aar',
+
+            moshi                : '1.9.2',
+            okHttp               : '4.4.1',
+            retrofit             : '2.7.2',
+
+            reactiveLocation2    : '2.1@aar',
+
+            moxy                 : '2.1.2',
+            eventBus             : '3.2.0',
+            cicerone             : '5.1.0',
+            logger               : '2.2.0',
+            inputMask            : '5.0.0',
+
+            glide                : '4.11.0',
+
+            matisse              : '0.5.3-beta3',
+
+            groupie              : '2.8.0'
+    ]
+
+    supportDeps = [
+            appcompatV7       : "androidx.appcompat:appcompat:$versions.appCompat",
+            design            : "com.google.android.material:material:$versions.materialDesign",
+
+            cardView          : "androidx.cardview:cardview:$versions.cardView",
+            recyclerView      : "androidx.recyclerview:recyclerview:$versions.recyclerView",
+
+            coroutines        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+            coroutinesAdroid  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines",
+
+            gridLayout        : "androidx.gridlayout:gridlayout:$versions.gridLayout",
+
+            ktx               : "androidx.core:core-ktx:$versions.ktx",
+            fragmentktx       : "androidx.fragment:fragment-ktx:$versions.fragmentKtx",
+
+            multiDex          : "androidx.multidex:multidex:$versions.multiDex",
+            lifecycleExt      : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleExt"
+    ]
+
+    rxBinding = [
+            platform       : "com.jakewharton.rxbinding3:rxbinding:$versions.rxBinding",
+            kotlin         : "com.jakewharton.rxbinding3:rxbinding-support-v4-kotlin:$versions.rxBinding",
+            core           : "com.jakewharton.rxbinding3:rxbinding-core:$versions.rxBinding",
+            appcompatV7    : "com.jakewharton.rxbinding3:rxbinding-appcompat:$versions.rxBinding",
+            recyclerView   : "com.jakewharton.rxbinding3:rxbinding-recyclerview:$versions.rxBinding",
+            swipeRefresh   : "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:$versions.rxBinding",
+            viewpager      : "com.jakewharton.rxbinding3:rxbinding-viewpager:$versions.rxBinding",
+            viewpager2     : "com.jakewharton.rxbinding3:rxbinding-viewpager2:$versions.rxBinding",
+            material       : "com.jakewharton.rxbinding3:rxbinding-material:$versions.rxBinding"
+    ]
+    rxLifecycle = [
+            core      : "com.trello.rxlifecycle3:rxlifecycle:$versions.rxLifecycle",
+            android   : "com.trello.rxlifecycle3:rxlifecycle-components-preference:$versions.rxLifecycle",
+            kotlin    : "com.trello.rxlifecycle3:rxlifecycle-android-lifecycle-kotlin:$versions.rxLifecycle"
+    ]
+    rx = [
+            rxKotlin        : "io.reactivex.rxjava3:rxkotlin:$versions.rxKotlin",
+            rxAndroid       : "io.reactivex.rxjava3:rxandroid:$versions.rxAndroid",
+            rxJava          : "io.reactivex.rxjava3:rxjava:$versions.rxJava",
+            rxPreferences   : "com.f2prateek.rx.preferences2:rx-preferences:$versions.rxPreferences",
+            rxRermissions   : "com.github.tbruyelle:rxpermissions:$versions.rxPermissions"
+    ] + rxBinding + rxLifecycle
+
+    retrofit = [
+            retrofit        : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            rxAdapter       : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            gsonAdapter     : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            moshiConverter  : "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    ]
+    okHttp = [
+            logger  : "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+            okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+    ]
+
+    materialDialog = [
+            core          : "com.afollestad.material-dialogs:bottomsheets:$versions.materialDialog",
+            date          : "com.afollestad.material-dialogs:datetime:$versions.materialDialog",
+            lifecycle     : "com.afollestad.material-dialogs:lifecycle:$versions.materialDialog",
+            bottomsheet   : "com.afollestad.material-dialogs:bottomsheets:$versions.materialDialog"
+    ]
+
+    location = [
+            reactiveLocation2   : "pl.charmas.android:android-reactive-location2:$versions.reactiveLocation2",
+            playLocation        : "com.google.android.gms:play-services-location:$versions.playLocation"
+    ]
+
+    imagePickers = [
+            matisse           : "com.zhihu.android:matisse:$versions.matisse"
+    ]
+
+    videoPlayers = [
+            youtubePlayer   : "com.pierfrancescosoffritti.androidyoutubeplayer:core:$versions.youtubePlayer",
+            videoPlayer     : "cn.jzvd:jiaozivideoplayer:$versions.videoPlayer",
+            videoView       : "com.linsea:universalvideoview:$versions.videoView"
+    ]
+
+    moshi = [
+            moshi: "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+    ]
+
+    moxy = [
+            core           : "com.github.moxy-community:moxy:$versions.moxy",
+            androidx       : "com.github.moxy-community:moxy-androidx:$versions.moxy",
+            material       : "com.github.moxy-community:moxy-material:$versions.moxy"
+    ]
+
+    groupie = [
+            core           : "com.xwray:groupie:$versions.groupie",
+            extentions     : "com.xwray:groupie-kotlin-android-extensions:$versions.groupie"
+    ]
+
+    firebase = [
+            firebaseCore        : "com.google.firebase:firebase-core:$versions.firebaseCore",
+            firebaseMessaging   : "com.google.firebase:firebase-messaging:$versions.firebase"
+    ]
+
+    koin = [
+            core          : "org.koin:koin-core:$koin_version",
+            scope         : "org.koin:koin-androidx-scope:$koin_version",
+            fragment      : "org.koin:koin-androidx-fragment:$koin_version",
+            ext           : "org.koin:koin-core-ext:$koin_version",
+            androidExt    : "org.koin:koin-androidx-ext:$koin_version",
+    ]
+
+    glide = [
+            core           : "com.github.bumptech.glide:glide:$versions.glide",
+            okhttp         : "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
+    ]
+
+    onlyDebug = [
+            chuck       : "com.readystatesoftware.chuck:library:1.1.0"
+    ]
+    onlyRelease = [
+            chuckNoOp   : "com.readystatesoftware.chuck:library-no-op:1.1.0",
+    ]
+
+
+    // Ui
+    segmentControl = "info.hoang8f:android-segmented:$versions.segmentControl"
+    circleImageView = "de.hdodenhof:circleimageview:$versions.circleImageView"
+    drawer = "com.mikepenz:materialdrawer:$versions.drawer"
+    toasty = "com.github.GrenderG:Toasty:$versions.toasty"
+    sweetAlert = "com.github.f0ris.sweetalert:library:$versions.sweetAlert"
+    inputMask = "com.redmadrobot:input-mask-android:$versions.inputMask"
+
+    circleIndicator = "me.relex:circleindicator:$versions.circleIndicator"
+    flexbox = "com.google.android:flexbox:$versions.flexBox"
+    gestureView = "com.alexvasilkov:gesture-views:$versions.gestureViews"
+
+    // Utility
+    eventBus = "org.greenrobot:eventbus:$versions.eventBus"
+    loggerLib = "com.orhanobut:logger:$versions.logger"
+    cicerone = "ru.terrakok.cicerone:cicerone:$versions.cicerone"
+
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+
+    // Fabric
+    answers = "com.crashlytics.sdk.android:answers:$versions.answers"
+    fabricCrashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
+
+    // Moxy
+    moxyLibs = moxy.values()
+    moxyCompiler = "com.github.moxy-community:moxy-compiler:$versions.moxy"
+
+    // Groupie
+    groupieLibs = groupie.values()
+
+
+    // Pickers
+    imagePickerLibs = imagePickers.values()
+    videoPlayerLibs = videoPlayers.values()
+    filePicker = "com.github.codekidX:storage-chooser:$versions.filePicker"
+
+    // Location
+    locationLibs = location.values()
+
+    // Koin
+    koinLibs = koin.values()
+
+    // Glide
+    glideLibs = glide.values()
+    glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
+
+    //MaterialDialog
+    materialDialogLibs = materialDialog.values()
+
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values() + okHttp.values() + moshi.values()
+    rxJavaLibs = rx.values()
+
+    firebaseLibs = firebase.values()
+
+    otherLibs = [eventBus, loggerLib, cicerone, toasty, sweetAlert, inputMask] +
+            imagePickerLibs + groupieLibs + moxyLibs + locationLibs + glideLibs + koinLibs
+
+    debugLibs = onlyDebug.values()
+    releaseLibs = onlyRelease.values()
+
+    annotationProcessorLibs = [glideCompiler, moxyCompiler]
+
+
+    allLibs = [segmentControl, circleImageView, /*drawer,*/ toasty, sweetAlert, inputMask, circleIndicator, flexbox,
+               gestureView, eventBus, loggerLib, cicerone, leakCannary, answers, filePicker] +
+            moxyLibs + groupieLibs + imagePickerLibs + videoPlayerLibs + locationLibs + materialDialogLibs + glideLibs
+}

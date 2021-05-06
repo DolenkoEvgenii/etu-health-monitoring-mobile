@@ -1,0 +1,37 @@
+buildscript {
+    apply from: 'config.gradle'
+    ext.kotlin_version = "1.4-M1"
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'io.fabric.tools:gradle:1.31.2'
+        classpath "org.koin:koin-gradle-plugin:$koin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+
+        maven { url "https://jitpack.io" }
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+

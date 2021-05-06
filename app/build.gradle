@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mvp.mvptemplate"
+        applicationId "ru.etu.monitoring"
         minSdkVersion 21
         targetSdkVersion 29
         multiDexEnabled true

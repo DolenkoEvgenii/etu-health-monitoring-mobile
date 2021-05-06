@@ -7,9 +7,10 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import moxy.MvpPresenter
 import moxy.MvpView
+import org.koin.core.component.KoinComponent
 import java.util.concurrent.TimeUnit
 
-open class BasePresenter<View : MvpView> : MvpPresenter<View>() {
+open class BasePresenter<View : MvpView> : MvpPresenter<View>(), KoinComponent {
     private var compositeDisposable = CompositeDisposable()
 
     override fun onFirstViewAttach() {

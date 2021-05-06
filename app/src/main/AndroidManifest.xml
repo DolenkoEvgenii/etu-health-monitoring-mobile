@@ -43,6 +43,13 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
+            android:name=".ui.activity.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
             android:name=".ui.activity.base.SimpleMvpRootActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />

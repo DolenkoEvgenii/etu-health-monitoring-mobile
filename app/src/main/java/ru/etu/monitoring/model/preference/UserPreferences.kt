@@ -14,17 +14,20 @@ class UserPreferences(context: Context) {
     val isAuthorized: Boolean
         get() = rxPreferences.getString(USER_ARG).get().isNotBlank()
 
-    val authToken: String
+    var authToken: String
         get() = rxPreferences.getString(TOKEN_ARG).get()
+        set(value) {
+            preferences.edit().putString(TOKEN_ARG, value).apply()
+        }
 
     fun getUserLocal(): Observable<User> {
         return rxPreferences.getString(USER_ARG)
-                .asObservable()
-                .map { userJson ->
-                    if (userJson.isEmpty()) throw Exception("no saved user")
-                    return@map Gson().fromJson(userJson, User::class.java)
-                }
-                .take(1)
+            .asObservable()
+            .map { userJson ->
+                if (userJson.isEmpty()) throw Exception("no saved user")
+                return@map Gson().fromJson(userJson, User::class.java)
+            }
+            .take(1)
     }
 
     fun getUserLocalBlocking(): User {
@@ -32,13 +35,8 @@ class UserPreferences(context: Context) {
     }
 
     fun saveUser(user: User) {
-        saveToken(user)
         val userJson = Gson().toJson(user)
         preferences.edit().putString(USER_ARG, userJson).apply()
-    }
-
-    fun saveToken(user: User) {
-        //preferences.edit().putString(TOKEN_ARG, user.token).apply()
     }
 
 

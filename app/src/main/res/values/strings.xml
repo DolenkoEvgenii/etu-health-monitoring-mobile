@@ -2,7 +2,8 @@
     <string name="app_name" tools:override="true">Health Monitoring</string>
 
     <string name="phone_mask">+ 7 (XXX) XXX XX XX</string>
-    <string name="input_phone_number">Введите номер телефона</string>
+    <string name="input_phone_number">Номер телефона</string>
+    <string name="input_sms_code">Код из смс</string>
     <string name="input_card_number">Введите номер карты</string>
     <string name="no_internet_connection">Нет интернет соединения. Попробуйте позже.</string>
     <string name="server_error">Ошибка сервера. Попробуйте позже</string>
@@ -11,4 +12,7 @@
     <string name="card_number_incorrect">Номер карты введен некорректно</string>
     <string name="card_number">Номер карты</string>
     <string name="loading">Загрузка</string>
+    <string name="sign_in">Войти</string>
+    <string name="entrance">Вход</string>
+    <string name="confirm">Подтвердить</string>
 </resources>

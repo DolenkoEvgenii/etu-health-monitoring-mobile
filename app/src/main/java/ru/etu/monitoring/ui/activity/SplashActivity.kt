@@ -31,7 +31,7 @@ class SplashActivity : BaseMvpFragmentActivity() {
             if (userRepo.isAuthorized) {
                 router.newRootScreen(Screens.MainActivityScreen())
             } else {
-                router.newRootScreen(Screens.MainActivityScreen())
+                router.newRootScreen(Screens.AuthActivityScreen())
             }
             ivIcon.stop()
         }

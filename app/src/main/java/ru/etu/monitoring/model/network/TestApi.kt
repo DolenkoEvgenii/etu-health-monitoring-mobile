@@ -1,11 +1,11 @@
 package ru.etu.monitoring.model.network
 
 
-import ru.etu.monitoring.model.data.TestClass
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
+import ru.etu.monitoring.model.data.TestClass
 
 
 interface TestApi {

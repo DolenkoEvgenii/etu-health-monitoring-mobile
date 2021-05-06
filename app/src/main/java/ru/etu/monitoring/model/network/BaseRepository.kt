@@ -1,17 +1,17 @@
 package ru.etu.monitoring.model.network
 
 import android.content.Context
-import ru.etu.monitoring.R
-import ru.etu.monitoring.model.exception.APIException
-import ru.etu.monitoring.model.network.user.UserApi
-import ru.etu.monitoring.model.preference.UserPreferences
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.functions.Function
 import org.json.JSONObject
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import retrofit2.Response
+import ru.etu.monitoring.R
+import ru.etu.monitoring.model.exception.APIException
+import ru.etu.monitoring.model.network.user.UserApi
+import ru.etu.monitoring.model.preference.UserPreferences
 import ru.terrakok.cicerone.Router
 import java.net.UnknownHostException
 
@@ -33,17 +33,17 @@ open class BaseRepository : KoinComponent {
     fun <T> handleErrors(): ObservableTransformer<Response<T>, T> {
         return ObservableTransformer { observable ->
             observable
-                    .onErrorResumeNext(Function { error ->
-                        error.printStackTrace()
-                        return@Function Observable.error(APIException(convertExceptionToText(error)))
-                    })
-                    .map { response ->
-                        if (response.isSuccessful) {
-                            return@map response.body()!!
-                        } else {
-                            throw getErrorInstance(response)
-                        }
+                .onErrorResumeNext(Function { error ->
+                    error.printStackTrace()
+                    return@Function Observable.error(APIException(convertExceptionToText(error)))
+                })
+                .map { response ->
+                    if (response.isSuccessful) {
+                        return@map response.body()!!
+                    } else {
+                        throw getErrorInstance(response)
                     }
+                }
         }
     }
 

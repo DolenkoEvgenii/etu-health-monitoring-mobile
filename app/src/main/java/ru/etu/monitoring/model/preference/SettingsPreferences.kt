@@ -3,9 +3,9 @@ package ru.etu.monitoring.model.preference
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
-class SettingsPreferences constructor(context: Context): KoinComponent {
+class SettingsPreferences constructor(context: Context) : KoinComponent {
     private val gson: Gson
     private var mSettings: SharedPreferences
 

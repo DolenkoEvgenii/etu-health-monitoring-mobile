@@ -1,11 +1,11 @@
 package ru.etu.monitoring.ui.activity.base
 
 import android.os.Bundle
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import ru.etu.monitoring.R
 import ru.etu.monitoring.presentation.presenter.SimplePresenter
 import ru.etu.monitoring.presentation.view.BaseMvpView
-import moxy.presenter.InjectPresenter
-import moxy.presenter.ProvidePresenter
 
 abstract class BaseMvpRootActivity : BaseMvpFragmentActivity(), BaseMvpView {
     @InjectPresenter

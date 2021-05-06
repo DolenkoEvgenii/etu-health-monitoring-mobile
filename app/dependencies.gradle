@@ -43,7 +43,7 @@ ext {
 
             reactiveLocation2    : '2.1@aar',
 
-            moxy                 : '2.1.2',
+            moxy                 : '2.2.1',
             eventBus             : '3.2.0',
             cicerone             : '5.1.0',
             logger               : '2.2.0',
@@ -153,11 +153,12 @@ ext {
     ]
 
     koin = [
-            core          : "org.koin:koin-core:$koin_version",
-            scope         : "org.koin:koin-androidx-scope:$koin_version",
-            fragment      : "org.koin:koin-androidx-fragment:$koin_version",
-            ext           : "org.koin:koin-core-ext:$koin_version",
-            androidExt    : "org.koin:koin-androidx-ext:$koin_version",
+            core          : "io.insert-koin:koin-core:$koin_version",
+            android       : "io.insert-koin:koin-android:$koin_version",
+            fragment      : "io.insert-koin:koin-androidx-workmanager:$koin_version",
+            compose       : "io.insert-koin:koin-androidx-compose:$koin_version",
+            ext           : "io.insert-koin:koin-core-ext:$koin_version",
+            androidExt    : "io.insert-koin:koin-android-ext:$koin_version",
     ]
 
     glide = [
@@ -191,10 +192,6 @@ ext {
     cicerone = "ru.terrakok.cicerone:cicerone:$versions.cicerone"
 
     leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
-
-    // Fabric
-    answers = "com.crashlytics.sdk.android:answers:$versions.answers"
-    fabricCrashlytics = "com.crashlytics.sdk.android:crashlytics:$versions.crashlytics"
 
     // Moxy
     moxyLibs = moxy.values()
@@ -238,6 +235,6 @@ ext {
 
 
     allLibs = [segmentControl, circleImageView, /*drawer,*/ toasty, sweetAlert, inputMask, circleIndicator, flexbox,
-               gestureView, eventBus, loggerLib, cicerone, leakCannary, answers, filePicker] +
+               gestureView, eventBus, loggerLib, cicerone, leakCannary, filePicker] +
             moxyLibs + groupieLibs + imagePickerLibs + videoPlayerLibs + locationLibs + materialDialogLibs + glideLibs
 }

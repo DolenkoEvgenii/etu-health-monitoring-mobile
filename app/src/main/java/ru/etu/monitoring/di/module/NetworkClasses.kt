@@ -5,10 +5,10 @@ import android.os.Build
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
-import ru.etu.monitoring.BuildConfig
-import ru.etu.monitoring.model.preference.UserPreferences
 import okhttp3.Interceptor
 import okhttp3.Response
+import ru.etu.monitoring.BuildConfig
+import ru.etu.monitoring.model.preference.UserPreferences
 import java.util.*
 
 object NetworkClasses {

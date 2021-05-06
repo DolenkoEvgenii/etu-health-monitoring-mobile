@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.preference.PreferenceManager
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.google.gson.Gson
-import ru.etu.monitoring.model.data.User
 import io.reactivex.Observable
+import ru.etu.monitoring.model.data.User
 
 class UserPreferences(context: Context) {
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)

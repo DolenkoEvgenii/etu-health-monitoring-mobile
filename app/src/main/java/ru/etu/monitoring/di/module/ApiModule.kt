@@ -1,9 +1,9 @@
 package ru.etu.monitoring.di.module
 
-import ru.etu.monitoring.model.network.user.UserApi
-import ru.etu.monitoring.model.network.user.UserRepository
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import ru.etu.monitoring.model.network.user.UserApi
+import ru.etu.monitoring.model.network.user.UserRepository
 
 val apiModule = module {
     factory<UserApi> {

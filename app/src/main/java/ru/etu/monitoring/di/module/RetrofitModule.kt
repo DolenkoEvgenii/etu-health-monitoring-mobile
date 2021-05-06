@@ -3,9 +3,6 @@ package ru.etu.monitoring.di.module
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import ru.etu.monitoring.AppConstants
-import ru.etu.monitoring.utils.gson.ExcludeCompanionConverter
-import ru.etu.monitoring.utils.gson.SerializableAsNullConverter
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -13,6 +10,9 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.etu.monitoring.AppConstants
+import ru.etu.monitoring.utils.gson.ExcludeCompanionConverter
+import ru.etu.monitoring.utils.gson.SerializableAsNullConverter
 import java.util.*
 import java.util.concurrent.TimeUnit
 

@@ -2,8 +2,8 @@ package ru.etu.monitoring.di.module
 
 import android.content.res.Resources
 import android.util.DisplayMetrics
-import ru.etu.monitoring.utils.helpers.displayMetricks
 import org.koin.dsl.module
+import ru.etu.monitoring.utils.helpers.displayMetricks
 
 val appModule = module {
     factory<Resources> {

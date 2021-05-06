@@ -3,8 +3,8 @@ package ru.etu.monitoring.utils.helpers
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import ru.etu.monitoring.R
 import com.redmadrobot.inputmask.MaskedTextChangedListener
+import ru.etu.monitoring.R
 
 fun EditText.applyPhoneInputMask(valueListener: MaskedTextChangedListener.ValueListener? = null, placeholder: String = context.getString(R.string.phone_mask)) {
     val listener = MaskedTextChangedListener(

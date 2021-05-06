@@ -15,6 +15,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.material.appbar.AppBarLayout
+import com.zhihu.matisse.Matisse
+import com.zhihu.matisse.MimeType
+import com.zhihu.matisse.internal.entity.CaptureStrategy
+import org.greenrobot.eventbus.EventBus
 import ru.etu.monitoring.BuildConfig
 import ru.etu.monitoring.R
 import ru.etu.monitoring.model.event.ToolbarUpdatedEvent
@@ -24,12 +28,8 @@ import ru.etu.monitoring.utils.glide.Glide4Engine
 import ru.etu.monitoring.utils.helpers.click
 import ru.etu.monitoring.utils.helpers.find
 import ru.etu.monitoring.utils.manager.permission.PermissionManager
-import ru.etu.monitoring.utils.provider.LoadingDialogProvider
-import com.zhihu.matisse.Matisse
-import com.zhihu.matisse.MimeType
-import com.zhihu.matisse.internal.entity.CaptureStrategy
-import org.greenrobot.eventbus.EventBus
 import ru.etu.monitoring.utils.manager.permission.requestPermissions
+import ru.etu.monitoring.utils.provider.LoadingDialogProvider
 import java.io.File
 
 abstract class BaseMvpFragment : BaseRxFragment() {

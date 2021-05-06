@@ -1,10 +1,10 @@
 package ru.etu.monitoring.utils.manager.location
 
 import android.content.Context
-import ru.etu.monitoring.utils.manager.permission.PermissionManager
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.trello.rxlifecycle3.LifecycleTransformer
 import io.reactivex.Single
+import ru.etu.monitoring.utils.manager.permission.PermissionManager
 
 object LocationManager {
     fun checkLocationPermissions(context: Context?, rxPermissions: RxPermissions,

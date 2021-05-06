@@ -19,8 +19,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_arrow_back"
         android:tint="@color/colorAccent"
-        android:src="@drawable/back_arrow"
         android:visibility="visible" />
 
     <TextView

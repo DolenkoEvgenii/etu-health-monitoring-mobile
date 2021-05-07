@@ -12,7 +12,6 @@ import ru.terrakok.cicerone.Router
 
 @InjectViewState
 class MainPresenter : BasePresenter<MainView>() {
-    private val router: Router by inject()
     private val userRepository: UserRepository by inject()
 
     override fun onFirstViewAttach() {
@@ -29,6 +28,7 @@ class MainPresenter : BasePresenter<MainView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     viewState.closeLoadingDialog()
+                    viewState.bindProfile(it)
                 }, {
                     viewState.closeLoadingDialog()
                     showErrorToast(it.localizedMessage)

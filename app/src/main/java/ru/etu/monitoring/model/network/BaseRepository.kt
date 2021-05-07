@@ -5,11 +5,14 @@ import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.functions.Function
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import org.json.JSONObject
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import retrofit2.Response
 import ru.etu.monitoring.R
+import ru.etu.monitoring.Screens
 import ru.etu.monitoring.model.exception.APIException
 import ru.etu.monitoring.model.network.data.response.BaseResponse
 import ru.etu.monitoring.model.network.user.UserApi
@@ -57,6 +60,17 @@ open class BaseRepository : KoinComponent {
                         else -> return@Function Observable.error(APIException(convertExceptionToText(error)))
                     }
                 })
+                .retry { _, exc ->
+                    if (exc is APIException && exc.httpCode == 401) {
+                        Completable.complete()
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                userPreferences.clearUserData()
+                                router.newRootScreen(Screens.AuthActivityScreen())
+                            }
+                    }
+                    return@retry false
+                }
         }
     }
 

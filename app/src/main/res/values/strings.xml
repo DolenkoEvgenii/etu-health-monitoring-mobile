@@ -15,10 +15,18 @@
     <string name="sign_in">Войти</string>
     <string name="entrance">Вход</string>
     <string name="confirm">Подтвердить</string>
-    <string name="to_register">Зарегестрироваться</string>
+    <string name="to_register">Зарегистрироваться</string>
     <string name="firstname">Имя</string>
     <string name="lastname">Фамилия</string>
     <string name="middlename">Отчество</string>
     <string name="birthday">Дата рождения</string>
     <string name="info">Информация</string>
+    <string name="greetings_s">Здравствуй %s</string>
+    <string name="you_doctor_is_s">Твой доктор - %s</string>
+    <string name="no_doctor_yet">Тебе скоро будет назначен врач</string>
+    <string name="you_ill">Ты болеешь</string>
+    <string name="you_not_ill">Ты здоров!</string>
+    <string name="middleName">Отчество</string>
+    <string name="state">Состояние</string>
+    <string name="im_ill">Я заболел</string>
 </resources>

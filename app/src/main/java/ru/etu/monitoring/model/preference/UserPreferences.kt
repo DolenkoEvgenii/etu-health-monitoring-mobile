@@ -40,7 +40,7 @@ class UserPreferences(context: Context) {
     }
 
 
-    private fun clearUserData() {
+    fun clearUserData() {
         rxPreferences.clear()
     }
 

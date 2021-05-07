@@ -1,5 +1,6 @@
 package ru.etu.monitoring.model.network
 
+import android.annotation.SuppressLint
 import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
@@ -10,6 +11,7 @@ import org.koin.core.component.inject
 import retrofit2.Response
 import ru.etu.monitoring.R
 import ru.etu.monitoring.model.exception.APIException
+import ru.etu.monitoring.model.network.data.response.BaseResponse
 import ru.etu.monitoring.model.network.user.UserApi
 import ru.etu.monitoring.model.preference.UserPreferences
 import ru.terrakok.cicerone.Router
@@ -30,20 +32,31 @@ open class BaseRepository : KoinComponent {
         }
     }
 
-    fun <T> handleErrors(): ObservableTransformer<Response<T>, T> {
+    @SuppressLint("CheckResult")
+    fun <T> handleErrors(): ObservableTransformer<Response<BaseResponse<T>>, T> {
         return ObservableTransformer { observable ->
             observable
-                .onErrorResumeNext(Function { error ->
-                    error.printStackTrace()
-                    return@Function Observable.error(APIException(convertExceptionToText(error)))
-                })
                 .map { response ->
                     if (response.isSuccessful) {
-                        return@map response.body()!!
+                        return@map response.body()
                     } else {
                         throw getErrorInstance(response)
                     }
                 }
+                .map {
+                    if (it.status) {
+                        return@map it.data
+                    } else {
+                        throw APIException(it.errorMessage)
+                    }
+                }
+                .onErrorResumeNext(Function { error ->
+                    error.printStackTrace()
+                    when (error) {
+                        is APIException -> return@Function Observable.error(error)
+                        else -> return@Function Observable.error(APIException(convertExceptionToText(error)))
+                    }
+                })
         }
     }
 

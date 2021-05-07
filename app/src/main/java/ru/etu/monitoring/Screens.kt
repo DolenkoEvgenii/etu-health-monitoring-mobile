@@ -9,6 +9,7 @@ import ru.etu.monitoring.ui.activity.auth.AuthActivity
 import ru.etu.monitoring.ui.fragment.auth.ConfirmLoginFragment
 import ru.etu.monitoring.ui.fragment.auth.LoginFragment
 import ru.etu.monitoring.ui.fragment.auth.SignUpFragment
+import ru.etu.monitoring.ui.fragment.main.MainFragment
 
 object Screens {
     class MainActivityScreen : BaseAppScreen() {
@@ -29,15 +30,21 @@ object Screens {
         }
     }
 
-    class ConfirmLoginScreen(val phone: String) : BaseAppScreen() {
+    class ConfirmLoginFragmentScreen(val phone: String) : BaseAppScreen() {
         override fun getFragment(): Fragment {
             return ConfirmLoginFragment.newInstance(phone)
         }
     }
 
-    class SignUpScreen(val phone: String) : BaseAppScreen() {
+    class SignUpFragmentScreen(val phone: String) : BaseAppScreen() {
         override fun getFragment(): Fragment {
             return SignUpFragment.newInstance(phone)
+        }
+    }
+
+    class MainFragmentScreen : BaseAppScreen() {
+        override fun getFragment(): Fragment {
+            return MainFragment.newInstance()
         }
     }
 }

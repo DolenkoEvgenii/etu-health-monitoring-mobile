@@ -6,9 +6,9 @@ import ru.etu.monitoring.model.network.BaseRepository
 import ru.etu.monitoring.model.network.data.request.ConfirmLoginRequest
 import ru.etu.monitoring.model.network.data.request.LoginRequest
 import ru.etu.monitoring.model.network.data.request.SignUpRequest
-import ru.etu.monitoring.model.network.data.response.ConfirmLoginResponse
-import ru.etu.monitoring.model.network.data.response.LoginResponse
-import ru.etu.monitoring.model.network.data.response.SignUpResponse
+import ru.etu.monitoring.model.network.data.response.auth.ConfirmLoginResponse
+import ru.etu.monitoring.model.network.data.response.auth.LoginResponse
+import ru.etu.monitoring.model.network.data.response.auth.SignUpResponse
 
 class UserRepository(val api: UserApi) : BaseRepository() {
     val isAuthorized: Boolean
@@ -27,7 +27,15 @@ class UserRepository(val api: UserApi) : BaseRepository() {
         return userApi.confirmLogin(ConfirmLoginRequest(phone, code))
             .compose(handleErrors())
             .doOnNext {
-                userPreferences.authToken = it.token
+                userPreferences.authToken = it.authKey
+            }
+    }
+
+    fun getProfile(): Observable<User> {
+        return userApi.getProfile()
+            .compose(handleErrors())
+            .doOnNext {
+                userPreferences.saveUser(it)
             }
     }
 
@@ -39,10 +47,10 @@ class UserRepository(val api: UserApi) : BaseRepository() {
         code: String,
         phone: String
     ): Observable<SignUpResponse> {
-        return userApi.signUp(SignUpRequest(phone,firstName,lastName,middleName,birthday,code))
+        return userApi.signUp(SignUpRequest(phone, firstName, lastName, middleName, birthday, code))
             .compose(handleErrors())
             .doOnNext {
-                userPreferences.authToken = it.token
+                userPreferences.authToken = it.authKey
             }
     }
 }

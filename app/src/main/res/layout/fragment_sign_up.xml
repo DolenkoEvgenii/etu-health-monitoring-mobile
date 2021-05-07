@@ -23,7 +23,7 @@
                 android:id="@+id/etFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 tools:text="Иван" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,7 +38,7 @@
                 android:id="@+id/etLastName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 tools:text="Иванов" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,7 +53,7 @@
                 android:id="@+id/etMiddleName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="textPersonName"
                 tools:text="Иванович" />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -50,10 +50,10 @@ class ConfirmLoginPresenter(val phone: String) : BasePresenter<ConfirmLoginView>
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     viewState.closeLoadingDialog()
-                    if (it.isRegistered) {
-                        router.navigateTo(Screens.`ConfirmLoginScreen`(phone))
+                    if (it.isExistUser) {
+                        router.navigateTo(Screens.ConfirmLoginFragmentScreen(phone))
                     } else {
-                        router.navigateTo(Screens.SignUpScreen(phone))
+                        router.navigateTo(Screens.SignUpFragmentScreen(phone))
                     }
                 }, {
                     viewState.closeLoadingDialog()

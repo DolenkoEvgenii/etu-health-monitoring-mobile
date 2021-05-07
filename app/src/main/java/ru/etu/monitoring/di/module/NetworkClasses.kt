@@ -21,8 +21,10 @@ object NetworkClasses {
             val model = Build.MODEL
 
             val displayMetrics = context.resources.displayMetrics
-            val screenResolution = String.format(Locale.getDefault(), "%dx%d",
-                    displayMetrics.heightPixels, displayMetrics.widthPixels)
+            val screenResolution = String.format(
+                Locale.getDefault(), "%dx%d",
+                displayMetrics.heightPixels, displayMetrics.widthPixels
+            )
 
             return String.format("Android_%s_v_%s_%s_%s", androidOCVersion, versionCode, model, screenResolution)
         }
@@ -30,8 +32,8 @@ object NetworkClasses {
         override fun intercept(chain: Interceptor.Chain): Response {
             val originalRequest = chain.request()
             val requestWithUserAgent = originalRequest.newBuilder()
-                    .header("User-Agent", userAgent)
-                    .build()
+                .header("User-Agent", userAgent)
+                .build()
             return chain.proceed(requestWithUserAgent)
         }
     }
@@ -42,9 +44,9 @@ object NetworkClasses {
             val token: String = userPreferences.authToken
 
             val request = original.newBuilder()
-                    .header("Authorization", token)
-                    .method(original.method, original.body)
-                    .build()
+                .header("Authorization", "Bearer $token")
+                .method(original.method, original.body)
+                .build()
 
             return chain.proceed(request)
         }

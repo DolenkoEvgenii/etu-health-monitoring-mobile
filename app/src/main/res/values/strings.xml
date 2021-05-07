@@ -20,4 +20,5 @@
     <string name="lastname">Фамилия</string>
     <string name="middlename">Отчество</string>
     <string name="birthday">Дата рождения</string>
+    <string name="info">Информация</string>
 </resources>

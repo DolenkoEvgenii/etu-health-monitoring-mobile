@@ -37,7 +37,7 @@
     <string name="symptoms">Симптомы</string>
     <string name="send">Отправить</string>
     <string name="you_doctor">Ваш доктор</string>
-    <string name="closed">Завершенные</string>
+    <string name="closed">Закрытые</string>
     <string name="current">Текущие</string>
     <string name="new_">Новые</string>
 </resources>

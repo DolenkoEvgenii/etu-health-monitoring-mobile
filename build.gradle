@@ -1,6 +1,6 @@
 buildscript {
     apply from: 'config.gradle'
-    ext.kotlin_version = "1.4.32"
+    ext.kotlin_version = "1.5.0"
 
     repositories {
         google()
@@ -11,7 +11,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
 
-        classpath 'com.google.gms:google-services:4.3.5'
+        classpath 'com.google.gms:google-services:4.3.6'
     }
 }
 

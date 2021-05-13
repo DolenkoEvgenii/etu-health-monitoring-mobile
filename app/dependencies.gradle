@@ -53,7 +53,7 @@ ext {
 
             matisse              : '0.5.3-beta3',
 
-            groupie              : '2.8.0'
+            groupie              : '2.8.1'
     ]
 
     supportDeps = [

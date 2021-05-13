@@ -21,9 +21,9 @@ class UserPreferences(context: Context) {
         }
 
     var isDoctor: Boolean
-        get() = rxPreferences.getBoolean(TOKEN_ARG).get()
+        get() = rxPreferences.getBoolean(IS_DOCTOR_ARG).get()
         set(value) {
-            preferences.edit().putBoolean(IS_DOCTOR_ARG, isDoctor).apply()
+            preferences.edit().putBoolean(IS_DOCTOR_ARG, value).apply()
         }
 
     fun getUserLocal(): Observable<User> {

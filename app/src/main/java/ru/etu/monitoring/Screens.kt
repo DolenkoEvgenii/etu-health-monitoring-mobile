@@ -9,6 +9,7 @@ import ru.etu.monitoring.ui.activity.auth.AuthActivity
 import ru.etu.monitoring.ui.fragment.auth.ConfirmLoginFragment
 import ru.etu.monitoring.ui.fragment.auth.LoginFragment
 import ru.etu.monitoring.ui.fragment.auth.SignUpFragment
+import ru.etu.monitoring.ui.fragment.doctor.DoctorMainFragment
 import ru.etu.monitoring.ui.fragment.illness.CreateIllnessFragment
 import ru.etu.monitoring.ui.fragment.main.MainFragment
 
@@ -46,6 +47,12 @@ object Screens {
     class MainFragmentScreen : BaseAppScreen() {
         override fun getFragment(): Fragment {
             return MainFragment.newInstance()
+        }
+    }
+
+    class DoctorMainFragmentScreen : BaseAppScreen() {
+        override fun getFragment(): Fragment {
+            return DoctorMainFragment.newInstance()
         }
     }
 

@@ -1,4 +1,4 @@
-package ru.etu.monitoring.presentation.presenter.main
+package ru.etu.monitoring.presentation.presenter.doctor
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -12,17 +12,9 @@ import ru.etu.monitoring.utils.helpers.showErrorToast
 import ru.terrakok.cicerone.Router
 
 @InjectViewState
-class MainPresenter : BasePresenter<MainView>() {
+class DoctorMainPresenter : BasePresenter<MainView>() {
     private val userRepository: UserRepository by inject()
     private val router: Router by inject()
-
-    fun onImIllClick() {
-        router.navigateTo(Screens.CreateIllnessFragmentScreen())
-    }
-
-    fun onResume() {
-        loadProfile()
-    }
 
     fun onLogoutClick() {
         userRepository.logout()

@@ -18,6 +18,10 @@ class UserRepository(val api: UserApi) : BaseRepository() {
         return userPreferences.getUserLocal()
     }
 
+    fun logout() {
+        userPreferences.clearUserData()
+    }
+
     fun login(phone: String): Observable<LoginResponse> {
         return userApi.login(LoginRequest(phone))
             .compose(handleErrors())
@@ -28,6 +32,7 @@ class UserRepository(val api: UserApi) : BaseRepository() {
             .compose(handleErrors())
             .doOnNext {
                 userPreferences.authToken = it.authKey
+                userPreferences.isDoctor = it.isDoctor
             }
     }
 
@@ -51,6 +56,7 @@ class UserRepository(val api: UserApi) : BaseRepository() {
             .compose(handleErrors())
             .doOnNext {
                 userPreferences.authToken = it.authKey
+                userPreferences.isDoctor = it.isDoctor
             }
     }
 }

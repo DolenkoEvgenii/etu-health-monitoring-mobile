@@ -20,8 +20,8 @@
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_arrow_back"
-        android:tint="@color/colorAccent"
-        android:visibility="visible" />
+        android:visibility="visible"
+        app:tint="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tvTitle"

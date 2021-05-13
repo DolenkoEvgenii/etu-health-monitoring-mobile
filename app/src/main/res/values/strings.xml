@@ -21,6 +21,7 @@
     <string name="middlename">Отчество</string>
     <string name="birthday">Дата рождения</string>
     <string name="info">Информация</string>
+    <string name="requests_list">Список заявок</string>
     <string name="greetings_s">Здравствуй %s</string>
     <string name="you_doctor_is_s">Твой доктор - %s</string>
     <string name="no_doctor_yet">Тебе скоро будет назначен врач</string>
@@ -36,4 +37,7 @@
     <string name="symptoms">Симптомы</string>
     <string name="send">Отправить</string>
     <string name="you_doctor">Ваш доктор</string>
+    <string name="closed">Завершенные</string>
+    <string name="current">Текущие</string>
+    <string name="new_">Новые</string>
 </resources>

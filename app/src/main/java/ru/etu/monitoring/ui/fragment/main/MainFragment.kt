@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.toolbar_logout.view.*
 import moxy.presenter.InjectPresenter
 import ru.etu.monitoring.R
 import ru.etu.monitoring.model.data.User
@@ -80,7 +81,11 @@ class MainFragment : BaseMvpFragment(), MainView {
     }
 
     override fun setupToolbar(appBar: AppBarLayout): Toolbar {
-        val toolbar = provideSimpleToolbar(getString(R.string.info), appBar)
+        val toolbar = inflateToolbar(R.layout.toolbar_logout, appBar)
+        toolbar.tvTitle.text = getString(R.string.info)
+        toolbar.btLogout.click {
+            presenter.onLogoutClick()
+        }
         appBar.addView(toolbar)
         return toolbar
     }

@@ -20,6 +20,12 @@ class UserPreferences(context: Context) {
             preferences.edit().putString(TOKEN_ARG, value).apply()
         }
 
+    var isDoctor: Boolean
+        get() = rxPreferences.getBoolean(TOKEN_ARG).get()
+        set(value) {
+            preferences.edit().putBoolean(IS_DOCTOR_ARG, isDoctor).apply()
+        }
+
     fun getUserLocal(): Observable<User> {
         return rxPreferences.getString(USER_ARG)
             .asObservable()
@@ -47,5 +53,6 @@ class UserPreferences(context: Context) {
     companion object {
         const val USER_ARG = "user_arg"
         const val TOKEN_ARG = "token_arg"
+        const val IS_DOCTOR_ARG = "is_doctor_arg"
     }
 }

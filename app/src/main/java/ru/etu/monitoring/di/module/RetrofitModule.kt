@@ -24,9 +24,9 @@ val retrofitModule = module {
 
     single<Retrofit.Builder> {
         Retrofit.Builder()
-                .client(get())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(get())
+            .client(get())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(get())
     }
 
     single<Converter.Factory> {
@@ -35,27 +35,28 @@ val retrofitModule = module {
 
     single<Gson> {
         GsonBuilder()
-                .registerTypeAdapterFactory(ExcludeCompanionConverter())
-                .registerTypeAdapterFactory(SerializableAsNullConverter())
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .setPrettyPrinting()
-                .registerTypeAdapter(Date::class.java, NetworkClasses.MyDateTypeAdapter())
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                .serializeNulls()
-                .create()
+            .registerTypeAdapterFactory(ExcludeCompanionConverter())
+            .registerTypeAdapterFactory(SerializableAsNullConverter())
+            .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+            .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .setPrettyPrinting()
+            .registerTypeAdapter(Date::class.java, NetworkClasses.MyDateTypeAdapter())
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+            .serializeNulls()
+            .create()
     }
 
     single<OkHttpClient> {
         OkHttpClient.Builder()
-                .retryOnConnectionFailure(true)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS)
-                .connectTimeout(20, TimeUnit.SECONDS)
-                .addInterceptor(NetworkClasses.AuthInterceptor(get()))
-                .addInterceptor(NetworkClasses.UserAgentInterceptor(get()))
-                .addInterceptor(ChuckInterceptor(get()))
-                .build()
+            .cache(null)
+            .retryOnConnectionFailure(true)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
+            .connectTimeout(20, TimeUnit.SECONDS)
+            .addInterceptor(NetworkClasses.AuthInterceptor(get()))
+            .addInterceptor(NetworkClasses.UserAgentInterceptor(get()))
+            .addInterceptor(ChuckInterceptor(get()))
+            .build()
     }
 }
 

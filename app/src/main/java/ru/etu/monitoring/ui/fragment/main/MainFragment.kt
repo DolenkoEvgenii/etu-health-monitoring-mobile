@@ -29,6 +29,13 @@ class MainFragment : BaseMvpFragment(), MainView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        btImIll.click { presenter.onImIllClick() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
     }
 
     override fun bindProfile(profile: User) {
@@ -62,6 +69,14 @@ class MainFragment : BaseMvpFragment(), MainView {
             tvNoDoctorInfo.gone()
             vDoctorCard.gone()
         }
+    }
+
+    override fun closeLoadingDialog() {
+        vLoading.gone()
+    }
+
+    override fun showLoadingDialog() {
+        vLoading.visible()
     }
 
     override fun setupToolbar(appBar: AppBarLayout): Toolbar {

@@ -29,4 +29,11 @@
     <string name="middleName">Отчество</string>
     <string name="state">Состояние</string>
     <string name="im_ill">Я заболел</string>
+    <string name="data_successfully_sent">Данные отправлены успешно</string>
+    <string name="create_illness">Создание заболевания</string>
+    <string name="temperature">Температура</string>
+    <string name="fill_all_fields">Заполните все поля</string>
+    <string name="symptoms">Симптомы</string>
+    <string name="send">Отправить</string>
+    <string name="you_doctor">Ваш доктор</string>
 </resources>

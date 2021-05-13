@@ -4,6 +4,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import moxy.InjectViewState
 import org.koin.core.component.inject
+import ru.etu.monitoring.Screens
 import ru.etu.monitoring.model.network.user.UserRepository
 import ru.etu.monitoring.presentation.presenter.BasePresenter
 import ru.etu.monitoring.presentation.view.main.MainView
@@ -13,9 +14,13 @@ import ru.terrakok.cicerone.Router
 @InjectViewState
 class MainPresenter : BasePresenter<MainView>() {
     private val userRepository: UserRepository by inject()
+    private val router: Router by inject()
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
+    fun onImIllClick() {
+        router.navigateTo(Screens.CreateIllnessFragmentScreen())
+    }
+
+    fun onResume() {
         loadProfile()
     }
 

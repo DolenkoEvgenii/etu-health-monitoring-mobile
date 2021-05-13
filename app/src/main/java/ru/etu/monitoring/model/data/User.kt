@@ -9,6 +9,7 @@ class User(
     val middleName: String,
     private val birthday: String,
     val isIll: Boolean,
+    val role: String,
     val doctor: Doctor?
 ) {
     val birthdayStr: String

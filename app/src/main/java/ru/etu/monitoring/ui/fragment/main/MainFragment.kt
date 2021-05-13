@@ -42,18 +42,20 @@ class MainFragment : BaseMvpFragment(), MainView {
             btImIll.gone()
 
             if (profile.doctor == null) {
+                vTreatments.gone()
                 vDoctorCard.gone()
                 tvNoDoctorInfo.visible()
-
-                tvDoctorInfo.text = profile.doctor?.fullName.orEmpty()
-                tvDoctorPhone.text = profile.doctor?.phone.orEmpty()
-
-                btCall.click {
-                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + profile.doctor?.phone.orEmpty())))
-                }
             } else {
                 tvNoDoctorInfo.gone()
                 vDoctorCard.visible()
+                vTreatments.visible()
+
+                tvDoctorInfo.text = profile.doctor.fullName
+                tvDoctorPhone.text = profile.doctor.phone
+
+                btCall.click {
+                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + profile.doctor.phone)))
+                }
             }
         } else {
             btImIll.visible()

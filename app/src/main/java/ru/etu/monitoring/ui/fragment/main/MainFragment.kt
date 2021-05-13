@@ -1,5 +1,7 @@
 package ru.etu.monitoring.ui.fragment.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import ru.etu.monitoring.model.data.User
 import ru.etu.monitoring.presentation.presenter.main.MainPresenter
 import ru.etu.monitoring.presentation.view.main.MainView
 import ru.etu.monitoring.ui.fragment.BaseMvpFragment
+import ru.etu.monitoring.utils.helpers.click
 import ru.etu.monitoring.utils.helpers.gone
 import ru.etu.monitoring.utils.helpers.visible
 
@@ -37,15 +40,25 @@ class MainFragment : BaseMvpFragment(), MainView {
 
         if (profile.isIll) {
             btImIll.gone()
-            tvDoctorInfo.visible()
-            tvDoctorInfo.text = if (profile.doctor == null) {
-                getString(R.string.no_doctor_yet)
+
+            if (profile.doctor == null) {
+                vDoctorCard.gone()
+                tvNoDoctorInfo.visible()
+
+                tvDoctorInfo.text = profile.doctor?.fullName.orEmpty()
+                tvDoctorPhone.text = profile.doctor?.phone.orEmpty()
+
+                btCall.click {
+                    startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + profile.doctor?.phone.orEmpty())))
+                }
             } else {
-                getString(R.string.you_doctor_is_s, profile.doctor.fullName)
+                tvNoDoctorInfo.gone()
+                vDoctorCard.visible()
             }
         } else {
             btImIll.visible()
-            tvDoctorInfo.gone()
+            tvNoDoctorInfo.gone()
+            vDoctorCard.gone()
         }
     }
 

@@ -7,6 +7,8 @@ import org.koin.core.component.inject
 import ru.etu.monitoring.Screens
 import ru.etu.monitoring.model.data.Request
 import ru.etu.monitoring.model.data_model.DoctorRequestsModel
+import ru.etu.monitoring.model.event.UpdateRequestsEvent
+import ru.etu.monitoring.model.interactor.EventInteractor
 import ru.etu.monitoring.model.network.doctor.DoctorRepository
 import ru.etu.monitoring.model.network.user.UserRepository
 import ru.etu.monitoring.presentation.presenter.BasePresenter
@@ -25,9 +27,10 @@ class DoctorMainPresenter : BasePresenter<DoctorMainView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.showRequests(model.newRequests, NEW)
-        viewState.showRequests(model.currentRequests, ACTIVE)
-        viewState.showRequests(model.finishedRequests, FINISHED)
+        listenForEvents()
+        viewState.showNewRequests(model.newRequests)
+        viewState.showCurrentRequests(model.currentRequests)
+        viewState.showClosedRequests(model.finishedRequests)
     }
 
     fun onLogoutClick() {
@@ -40,7 +43,7 @@ class DoctorMainPresenter : BasePresenter<DoctorMainView>() {
     }
 
     fun onRequestClick(request: Request) {
-
+        router.navigateTo(Screens.DoctorRequestDetailsFragmentScreen(request).apply { inNewActivity = true })
     }
 
     fun onRefresh(type: RequestType) {
@@ -80,6 +83,19 @@ class DoctorMainPresenter : BasePresenter<DoctorMainView>() {
                 }, {
                     viewState.closeLoadingDialog()
                     showErrorToast(it.localizedMessage)
+                })
+        )
+    }
+
+    private fun listenForEvents() {
+        unsubscribeOnDestroy(
+            EventInteractor.getEventObservable<UpdateRequestsEvent>()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    onRefresh(NEW)
+                    onRefresh(ACTIVE)
+                }, {
+                    it.printStackTrace()
                 })
         )
     }

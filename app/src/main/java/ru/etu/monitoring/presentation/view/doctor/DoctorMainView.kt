@@ -9,7 +9,13 @@ import ru.etu.monitoring.presentation.view.BaseMvpView
 
 interface DoctorMainView : BaseMvpView {
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun showRequests(requests: List<Request>, type: DoctorMainPresenter.RequestType)
+    fun showNewRequests(requests: List<Request>)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showCurrentRequests(requests: List<Request>)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showClosedRequests(requests: List<Request>)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun addRequests(requests: List<Request>, type: DoctorMainPresenter.RequestType)

@@ -30,7 +30,7 @@
             android:id="@+id/tvSymptoms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="@android:color/black"
@@ -40,7 +40,7 @@
             android:id="@+id/tvTemperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>

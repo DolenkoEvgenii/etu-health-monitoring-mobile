@@ -32,6 +32,7 @@
     <string name="im_ill">Я заболел</string>
     <string name="data_successfully_sent">Данные отправлены успешно</string>
     <string name="create_illness">Создание заболевания</string>
+    <string name="create_task">Создание задачи</string>
     <string name="temperature">Температура</string>
     <string name="fill_all_fields">Заполните все поля</string>
     <string name="symptoms">Симптомы</string>
@@ -41,6 +42,25 @@
     <string name="current">Текущие</string>
     <string name="new_">Новые</string>
     <string name="temperature_s">Температура: %s</string>
+    <string name="patient_s">Пациент: %s</string>
+    <string name="age_s">Возраст: %s</string>
     <string name="patient_s_age">Пациент: %s (%s)</string>
     <string name="symptoms_s">Симптомы: %s</string>
+    <string name="create_date_s">Дата обращения: %s</string>
+    <string name="request">Заявка</string>
+    <string name="status_new">Статус: Новая заявка</string>
+    <string name="status_current">Статус: Пациент на лечении</string>
+    <string name="status_discharged">Статус: Пациент выписан</string>
+    <string name="accept_request">Принять заявку</string>
+    <string name="opened">Открытые</string>
+    <string name="completed">Выполненные</string>
+    <string name="deleted">Удаленные</string>
+    <string name="active">Активные</string>
+    <string name="medication_tasks">Задачи на прием лекарств</string>
+    <string name="no_tasks">Нет задач</string>
+    <string name="add">Добавить</string>
+    <string name="medicine_name">Название лекарства</string>
+    <string name="take_a_day">Принимать в день</string>
+    <string name="take_until">Принимать до</string>
+    <string name="create">Создать</string>
 </resources>

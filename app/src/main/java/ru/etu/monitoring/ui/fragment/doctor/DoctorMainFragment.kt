@@ -32,6 +32,8 @@ class DoctorMainFragment : BaseMvpFragment(), DoctorMainView, RequestItem.Reques
 
     private var currentType: DoctorMainPresenter.RequestType = NEW
 
+    private var tabLayout: TabLayout? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_doctor_main, container, false)
     }
@@ -49,7 +51,19 @@ class DoctorMainFragment : BaseMvpFragment(), DoctorMainView, RequestItem.Reques
         }
     }
 
-    override fun showRequests(requests: List<Request>, type: DoctorMainPresenter.RequestType) {
+    override fun showNewRequests(requests: List<Request>) {
+        showRequests(requests, NEW)
+    }
+
+    override fun showCurrentRequests(requests: List<Request>) {
+        showRequests(requests, ACTIVE)
+    }
+
+    override fun showClosedRequests(requests: List<Request>) {
+        showRequests(requests, FINISHED)
+    }
+
+    private fun showRequests(requests: List<Request>, type: DoctorMainPresenter.RequestType) {
         val groupAdapter = GroupAdapter<GroupieViewHolder>()
         groupAdapter.addAll(requests.map { RequestItem(it, this) })
 
@@ -74,18 +88,21 @@ class DoctorMainFragment : BaseMvpFragment(), DoctorMainView, RequestItem.Reques
     private fun onTabChanged(pos: Int) {
         when (pos) {
             TAB_NEW -> {
+                tabLayout?.selectTab(tabLayout?.getTabAt(0))
                 currentType = NEW
                 rvNewRequests.visible()
                 rvCurrentRequests.gone()
                 rvFinishedRequests.gone()
             }
             TAB_CURRENT -> {
+                tabLayout?.selectTab(tabLayout?.getTabAt(1))
                 currentType = ACTIVE
                 rvNewRequests.gone()
                 rvCurrentRequests.visible()
                 rvFinishedRequests.gone()
             }
             TAB_FINISHED -> {
+                tabLayout?.selectTab(tabLayout?.getTabAt(2))
                 currentType = FINISHED
                 rvNewRequests.gone()
                 rvCurrentRequests.gone()
@@ -118,26 +135,33 @@ class DoctorMainFragment : BaseMvpFragment(), DoctorMainView, RequestItem.Reques
         }
         appBar.addView(toolbar)
 
-        val tabLayout = TabLayout(requireContext()).apply {
-            addTab(newTab().setText(context.getString(R.string.new_)))
-            addTab(newTab().setText(context.getString(R.string.current)))
-            addTab(newTab().setText(context.getString(R.string.closed)))
+        if (tabLayout == null) {
+            val tabLayout = TabLayout(requireContext()).apply {
+                addTab(newTab().setText(context.getString(R.string.new_)))
+                addTab(newTab().setText(context.getString(R.string.current)))
+                addTab(newTab().setText(context.getString(R.string.closed)))
+            }
+
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    onTabChanged(tab?.position ?: 0)
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+
+                }
+            })
+            this.tabLayout = tabLayout
+            appBar.addView(tabLayout)
+        } else {
+            appBar.addView(tabLayout)
         }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                onTabChanged(tab?.position ?: 0)
-            }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
-        appBar.addView(tabLayout)
 
         return toolbar
     }

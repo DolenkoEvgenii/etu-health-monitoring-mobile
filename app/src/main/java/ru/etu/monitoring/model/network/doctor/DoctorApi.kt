@@ -38,7 +38,4 @@ interface DoctorApi {
 
     @POST("task/mark-remove")
     fun markTaskDelete(@Body request: ChangeTaskRequest): Observable<Response<BaseResponse<ChangeTaskResponse>>>
-
-    @POST("task/mark-done")
-    fun markTaskDone(@Body request: ChangeTaskRequest): Observable<Response<BaseResponse<ChangeTaskResponse>>>
 }

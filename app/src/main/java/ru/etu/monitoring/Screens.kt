@@ -13,9 +13,8 @@ import ru.etu.monitoring.ui.fragment.auth.SignUpFragment
 import ru.etu.monitoring.ui.fragment.doctor.DoctorMainFragment
 import ru.etu.monitoring.ui.fragment.doctor.DoctorRequestDetailsFragment
 import ru.etu.monitoring.ui.fragment.illness.CreateIllnessFragment
-import ru.etu.monitoring.ui.fragment.main.MainFragment
+import ru.etu.monitoring.ui.fragment.main.MainPatientFragment
 import ru.etu.monitoring.ui.fragment.task.CreateTaskFragment
-import java.io.Serializable
 
 object Screens {
     class MainActivityScreen : BaseAppScreen() {
@@ -50,7 +49,7 @@ object Screens {
 
     class MainFragmentScreen : BaseAppScreen() {
         override fun getFragment(): Fragment {
-            return MainFragment.newInstance()
+            return MainPatientFragment.newInstance()
         }
     }
 

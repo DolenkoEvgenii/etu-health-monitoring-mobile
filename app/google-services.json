@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "545200151744",
+    "project_id": "etuhealthmonitoring",
+    "storage_bucket": "etuhealthmonitoring.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545200151744:android:0289d26320535c83d9a125",
+        "android_client_info": {
+          "package_name": "ru.etu.monitoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545200151744-jlnul1t3crq8la0vnuk38jqefp2njpl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC5i0BD4HvWkkeb9Laf79nsPnvb7dhULY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545200151744-jlnul1t3crq8la0vnuk38jqefp2njpl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

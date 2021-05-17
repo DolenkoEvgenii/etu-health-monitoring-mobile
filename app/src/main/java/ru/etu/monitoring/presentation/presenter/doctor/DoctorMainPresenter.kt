@@ -11,6 +11,7 @@ import ru.etu.monitoring.model.event.UpdateRequestsEvent
 import ru.etu.monitoring.model.interactor.EventInteractor
 import ru.etu.monitoring.model.network.doctor.DoctorRepository
 import ru.etu.monitoring.model.network.user.UserRepository
+import ru.etu.monitoring.model.preference.UserPreferences
 import ru.etu.monitoring.presentation.presenter.BasePresenter
 import ru.etu.monitoring.presentation.presenter.doctor.DoctorMainPresenter.RequestType.*
 import ru.etu.monitoring.presentation.view.doctor.DoctorMainView
@@ -20,6 +21,7 @@ import ru.terrakok.cicerone.Router
 @InjectViewState
 class DoctorMainPresenter : BasePresenter<DoctorMainView>() {
     private val userRepository: UserRepository by inject()
+    private val userPreferences: UserPreferences by inject()
     private val doctorRepository: DoctorRepository by inject()
     private val router: Router by inject()
 
@@ -28,6 +30,7 @@ class DoctorMainPresenter : BasePresenter<DoctorMainView>() {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         listenForEvents()
+        sendFirebaseTokenToServer()
         viewState.showNewRequests(model.newRequests)
         viewState.showCurrentRequests(model.currentRequests)
         viewState.showClosedRequests(model.finishedRequests)
@@ -94,6 +97,19 @@ class DoctorMainPresenter : BasePresenter<DoctorMainView>() {
                 .subscribe({
                     onRefresh(NEW)
                     onRefresh(ACTIVE)
+                }, {
+                    it.printStackTrace()
+                })
+        )
+    }
+
+    private fun sendFirebaseTokenToServer() {
+        unsubscribeOnDestroy(
+            userRepository.updateFirebaseToken(userPreferences.firebaseToken)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+
                 }, {
                     it.printStackTrace()
                 })

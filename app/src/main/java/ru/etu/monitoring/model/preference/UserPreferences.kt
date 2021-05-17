@@ -20,6 +20,12 @@ class UserPreferences(context: Context) {
             preferences.edit().putString(TOKEN_ARG, value).apply()
         }
 
+    var firebaseToken: String
+        get() = rxPreferences.getString(FIREBASE_TOKEN_ARG).get()
+        set(value) {
+            preferences.edit().putString(FIREBASE_TOKEN_ARG, value).apply()
+        }
+
     var isDoctor: Boolean
         get() = rxPreferences.getBoolean(IS_DOCTOR_ARG).get()
         set(value) {
@@ -47,12 +53,15 @@ class UserPreferences(context: Context) {
 
 
     fun clearUserData() {
+        val firebaseTokenOld = firebaseToken
         rxPreferences.clear()
+        firebaseToken = firebaseTokenOld
     }
 
     companion object {
         const val USER_ARG = "user_arg"
         const val TOKEN_ARG = "token_arg"
+        const val FIREBASE_TOKEN_ARG = "firebase_token_arg"
         const val IS_DOCTOR_ARG = "is_doctor_arg"
     }
 }

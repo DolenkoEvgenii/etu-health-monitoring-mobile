@@ -9,8 +9,10 @@ import retrofit2.http.POST
 import ru.etu.monitoring.model.data.User
 import ru.etu.monitoring.model.network.data.request.ConfirmLoginRequest
 import ru.etu.monitoring.model.network.data.request.LoginRequest
+import ru.etu.monitoring.model.network.data.request.SendFirebaseTokenRequest
 import ru.etu.monitoring.model.network.data.request.SignUpRequest
 import ru.etu.monitoring.model.network.data.response.BaseResponse
+import ru.etu.monitoring.model.network.data.response.SendFirebaseTokenResponse
 import ru.etu.monitoring.model.network.data.response.auth.ConfirmLoginResponse
 import ru.etu.monitoring.model.network.data.response.auth.LoginResponse
 import ru.etu.monitoring.model.network.data.response.auth.SignUpResponse
@@ -27,4 +29,7 @@ interface UserApi {
 
     @POST("user/confirm")
     fun signUp(@Body request: SignUpRequest): Observable<Response<BaseResponse<SignUpResponse>>>
+
+    @POST("user/firebase")
+    fun sendFirebaseToken(@Body request: SendFirebaseTokenRequest): Observable<Response<BaseResponse<SendFirebaseTokenResponse>>>
 }

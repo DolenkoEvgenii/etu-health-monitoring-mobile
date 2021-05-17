@@ -7,30 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.fragment_main.*
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
+import kotlinx.android.synthetic.main.fragment_patient_main.*
 import kotlinx.android.synthetic.main.toolbar_logout.view.*
 import moxy.presenter.InjectPresenter
 import ru.etu.monitoring.R
+import ru.etu.monitoring.model.data.RequestTask
 import ru.etu.monitoring.model.data.User
-import ru.etu.monitoring.presentation.presenter.main.MainPresenter
-import ru.etu.monitoring.presentation.view.main.MainView
+import ru.etu.monitoring.presentation.presenter.main.MainPatientPresenter
+import ru.etu.monitoring.presentation.view.main.MainPatientView
+import ru.etu.monitoring.ui.adapter.item.RequestTaskItem
 import ru.etu.monitoring.ui.fragment.BaseMvpFragment
 import ru.etu.monitoring.utils.helpers.click
 import ru.etu.monitoring.utils.helpers.gone
 import ru.etu.monitoring.utils.helpers.visible
 
-class MainFragment : BaseMvpFragment(), MainView {
+class MainPatientFragment : BaseMvpFragment(), MainPatientView, RequestTaskItem.RequestTaskItemListener {
     @InjectPresenter
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: MainPatientPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_patient_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        rvTasks.layoutManager = LinearLayoutManager(context)
         btImIll.click { presenter.onImIllClick() }
     }
 
@@ -72,6 +77,39 @@ class MainFragment : BaseMvpFragment(), MainView {
         }
     }
 
+    override fun onDeleteClick(task: RequestTask) {
+
+    }
+
+    override fun onAcceptClick(task: RequestTask) {
+        presenter.onMarkTaskDoneClick(task)
+    }
+
+    override fun showTasks(active: List<RequestTask>, done: List<RequestTask>) {
+        vTasksView.visibility = View.VISIBLE
+        val groupAdapter = GroupAdapter<GroupieViewHolder>()
+
+        groupAdapter.addAll(active.map { RequestTaskItem(it, canDelete = false, canAccept = true, listener = this) })
+        tvNoTask.visibility = if (active.isEmpty()) View.VISIBLE else View.GONE
+        rvTasks.adapter = groupAdapter
+
+        chipActive.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                groupAdapter.clear()
+                groupAdapter.addAll(active.map { RequestTaskItem(it, canDelete = false, canAccept = true, listener = this) })
+                tvNoTask.visibility = if (active.isEmpty()) View.VISIBLE else View.GONE
+            }
+        }
+
+        chipDone.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                groupAdapter.clear()
+                groupAdapter.addAll(done.map { RequestTaskItem(it, canDelete = false, canAccept = false, listener = this) })
+                tvNoTask.visibility = if (done.isEmpty()) View.VISIBLE else View.GONE
+            }
+        }
+    }
+
     override fun closeLoadingDialog() {
         vLoading.gone()
     }
@@ -92,8 +130,8 @@ class MainFragment : BaseMvpFragment(), MainView {
 
     companion object {
         const val TAG = "MainFragment"
-        fun newInstance(): MainFragment {
-            return MainFragment()
+        fun newInstance(): MainPatientFragment {
+            return MainPatientFragment()
         }
     }
 }

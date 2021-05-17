@@ -5,7 +5,9 @@ import ru.etu.monitoring.model.data.User
 import ru.etu.monitoring.model.network.BaseRepository
 import ru.etu.monitoring.model.network.data.request.ConfirmLoginRequest
 import ru.etu.monitoring.model.network.data.request.LoginRequest
+import ru.etu.monitoring.model.network.data.request.SendFirebaseTokenRequest
 import ru.etu.monitoring.model.network.data.request.SignUpRequest
+import ru.etu.monitoring.model.network.data.response.SendFirebaseTokenResponse
 import ru.etu.monitoring.model.network.data.response.auth.ConfirmLoginResponse
 import ru.etu.monitoring.model.network.data.response.auth.LoginResponse
 import ru.etu.monitoring.model.network.data.response.auth.SignUpResponse
@@ -34,6 +36,11 @@ class UserRepository(val api: UserApi) : BaseRepository() {
                 userPreferences.authToken = it.authKey
                 userPreferences.isDoctor = it.isDoctor
             }
+    }
+
+    fun updateFirebaseToken(token: String): Observable<SendFirebaseTokenResponse> {
+        return userApi.sendFirebaseToken(SendFirebaseTokenRequest(token))
+            .compose(handleErrors())
     }
 
     fun getProfile(): Observable<User> {

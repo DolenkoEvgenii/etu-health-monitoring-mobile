@@ -161,8 +161,6 @@ class DoctorMainFragment : BaseMvpFragment(), DoctorMainView, RequestItem.Reques
             appBar.addView(tabLayout)
         }
 
-
-
         return toolbar
     }
 

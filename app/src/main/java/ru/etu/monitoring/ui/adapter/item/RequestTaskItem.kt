@@ -19,8 +19,7 @@ open class RequestTaskItem(
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.apply {
             tvTaskTitle.text = task.title
-            tvTaskDate.text = task.plannedAt
-
+            tvTaskDate.text = task.formattedDate
 
             if (canDelete) {
                 btDeleteTask.visible()

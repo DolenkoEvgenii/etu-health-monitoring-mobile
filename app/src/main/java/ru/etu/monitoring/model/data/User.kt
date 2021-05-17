@@ -8,6 +8,7 @@ class User(
     val lastName: String,
     val middleName: String,
     private val birthday: String,
+    val orderId: Int?,
     val isIll: Boolean,
     val role: String,
     val doctor: Doctor?

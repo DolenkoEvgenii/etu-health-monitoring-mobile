@@ -17,4 +17,7 @@ data class Request(
     val orderId: String,
     val symptoms: String,
     val temperature: String
-)
+) {
+    val name: String
+        get() = "$lastName $firstName"
+}

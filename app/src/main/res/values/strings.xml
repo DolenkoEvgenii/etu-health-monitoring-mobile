@@ -40,4 +40,7 @@
     <string name="closed">Закрытые</string>
     <string name="current">Текущие</string>
     <string name="new_">Новые</string>
+    <string name="temperature_s">Температура: %s</string>
+    <string name="patient_s_age">Пациент: %s (%s)</string>
+    <string name="symptoms_s">Симптомы: %s</string>
 </resources>

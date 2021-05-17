@@ -12,7 +12,7 @@ class UserPreferences(context: Context) {
     private val rxPreferences = RxSharedPreferences.create(preferences)
 
     val isAuthorized: Boolean
-        get() = rxPreferences.getString(USER_ARG).get().isNotBlank()
+        get() = rxPreferences.getString(TOKEN_ARG).get().isNotBlank()
 
     var authToken: String
         get() = rxPreferences.getString(TOKEN_ARG).get()

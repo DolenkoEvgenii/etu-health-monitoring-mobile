@@ -30,7 +30,7 @@ class DoctorMainFragment : BaseMvpFragment(), DoctorMainView, RequestItem.Reques
     @InjectPresenter
     lateinit var presenter: DoctorMainPresenter
 
-    private var currentType: DoctorMainPresenter.RequestType = DoctorMainPresenter.RequestType.NEW
+    private var currentType: DoctorMainPresenter.RequestType = NEW
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_doctor_main, container, false)

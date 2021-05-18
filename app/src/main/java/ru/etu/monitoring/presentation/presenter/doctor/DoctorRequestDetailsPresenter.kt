@@ -46,6 +46,10 @@ class DoctorRequestDetailsPresenter(val request: Request) : BasePresenter<Doctor
         deleteTask(task)
     }
 
+    fun onSetHomePointClick() {
+
+    }
+
     private fun acceptRequest() {
         viewState.showLoadingDialog()
         unsubscribeOnDestroy(

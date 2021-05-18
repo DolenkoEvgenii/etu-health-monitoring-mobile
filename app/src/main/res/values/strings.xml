@@ -64,4 +64,5 @@
     <string name="take_a_day">Принимать в день</string>
     <string name="take_until">Принимать до</string>
     <string name="create">Создать</string>
+    <string name="set_home_point">Установить домашнюю точку</string>
 </resources>

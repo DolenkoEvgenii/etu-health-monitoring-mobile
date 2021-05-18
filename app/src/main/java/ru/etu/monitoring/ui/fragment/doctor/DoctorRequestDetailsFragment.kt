@@ -51,6 +51,10 @@ class DoctorRequestDetailsFragment : BaseMvpFragment(), DoctorRequestDetailsView
         btAddTask.click {
             presenter.onAddTaskClick()
         }
+
+        btSetHomePoint.click {
+            presenter.onSetHomePointClick()
+        }
     }
 
     override fun onDeleteClick(task: RequestTask) {
@@ -122,6 +126,12 @@ class DoctorRequestDetailsFragment : BaseMvpFragment(), DoctorRequestDetailsView
             else -> {
                 "unknown status"
             }
+        }
+
+        if (request.isOpen) {
+            btSetHomePoint.visible()
+        } else {
+            btSetHomePoint.gone()
         }
 
         btAcceptRequest.visibility = if (request.isNew) View.VISIBLE else View.GONE

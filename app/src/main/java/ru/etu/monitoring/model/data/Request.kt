@@ -17,8 +17,8 @@ data class Request(
     val middleName: String,
     @SerializedName("order_id")
     val orderId: String,
-    val latitude: Float?,
-    val longitude: Float?,
+    var latitude: Float?,
+    var longitude: Float?,
     val status: String,
     val symptoms: String,
     val temperature: String

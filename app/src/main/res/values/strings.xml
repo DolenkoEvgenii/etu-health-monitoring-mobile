@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" tools:override="true">Health Monitoring</string>
     <string name="default_notification_channel_id" translatable="false">Etu_Health_Main_Channel</string>
+    <string name="google_maps_key" translatable="false">AIzaSyBVtBkdI58dtvfb4XjFPFSbDihbvF0ElH0</string>
 
     <string name="phone_mask">+ 7 (XXX) XXX XX XX</string>
     <string name="input_phone_number">Номер телефона</string>
@@ -65,4 +66,7 @@
     <string name="take_until">Принимать до</string>
     <string name="create">Создать</string>
     <string name="set_home_point">Установить домашнюю точку</string>
+    <string name="title_activity_map">Map</string>
+    <string name="select_home_point">Выберите домашнюю точку</string>
+    <string name="save">Сохранить</string>
 </resources>

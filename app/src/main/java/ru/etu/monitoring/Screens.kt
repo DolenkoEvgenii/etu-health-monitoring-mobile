@@ -3,10 +3,12 @@ package ru.etu.monitoring
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.Fragment
+import com.google.android.gms.maps.model.LatLng
 import ru.etu.monitoring.model.data.Request
 import ru.etu.monitoring.model.navigator.BaseAppScreen
 import ru.etu.monitoring.ui.activity.MainActivity
 import ru.etu.monitoring.ui.activity.auth.AuthActivity
+import ru.etu.monitoring.ui.activity.map.PickHomePointActivity
 import ru.etu.monitoring.ui.fragment.auth.ConfirmLoginFragment
 import ru.etu.monitoring.ui.fragment.auth.LoginFragment
 import ru.etu.monitoring.ui.fragment.auth.SignUpFragment
@@ -20,6 +22,12 @@ object Screens {
     class MainActivityScreen : BaseAppScreen() {
         override fun getActivityIntent(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
+        }
+    }
+
+    class PickHomePointActivityScreen(val lastPos: LatLng?) : BaseAppScreen() {
+        override fun getActivityIntent(context: Context): Intent {
+            return PickHomePointActivity.getIntent(context, lastPos)
         }
     }
 

@@ -65,6 +65,9 @@ android {
     androidExtensions {
         experimental = true
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 apply from: 'dependencies.gradle'
@@ -78,6 +81,7 @@ dependencies {
     implementation rxJavaLibs
 
     implementation otherLibs
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
     debugImplementation debugLibs
     releaseImplementation releaseLibs

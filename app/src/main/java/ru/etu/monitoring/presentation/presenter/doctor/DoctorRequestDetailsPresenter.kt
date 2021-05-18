@@ -1,5 +1,6 @@
 package ru.etu.monitoring.presentation.presenter.doctor
 
+import com.google.android.gms.maps.model.LatLng
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import moxy.InjectViewState
@@ -9,6 +10,7 @@ import ru.etu.monitoring.model.data.Request
 import ru.etu.monitoring.model.data.RequestTask
 import ru.etu.monitoring.model.data_model.DoctorRequestDetailsModel
 import ru.etu.monitoring.model.event.CreateTaskDataInputEvent
+import ru.etu.monitoring.model.event.UpdateHomePointEvent
 import ru.etu.monitoring.model.event.UpdateRequestsEvent
 import ru.etu.monitoring.model.interactor.EventInteractor
 import ru.etu.monitoring.model.network.doctor.DoctorRepository
@@ -47,7 +49,14 @@ class DoctorRequestDetailsPresenter(val request: Request) : BasePresenter<Doctor
     }
 
     fun onSetHomePointClick() {
+        val lat = request.latitude
+        val lng = request.longitude
 
+        if (lat != null && lng != null) {
+            router.navigateTo(Screens.PickHomePointActivityScreen(LatLng(lat.toDouble(), lng.toDouble())))
+        } else {
+            router.navigateTo(Screens.PickHomePointActivityScreen(null))
+        }
     }
 
     private fun acceptRequest() {
@@ -109,6 +118,23 @@ class DoctorRequestDetailsPresenter(val request: Request) : BasePresenter<Doctor
         )
     }
 
+    private fun setHomePoint(latLng: LatLng) {
+        viewState.showLoadingDialog()
+        unsubscribeOnDestroy(
+            doctorRepository.setHomePoint(request.orderId, latLng)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    request.latitude = latLng.latitude.toFloat()
+                    request.longitude = latLng.longitude.toFloat()
+                    viewState.closeLoadingDialog()
+                }, {
+                    viewState.closeLoadingDialog()
+                    showErrorToast(it.localizedMessage)
+                })
+        )
+    }
+
     private fun deleteTask(task: RequestTask) {
         viewState.showLoadingDialog()
         unsubscribeOnDestroy(
@@ -133,6 +159,16 @@ class DoctorRequestDetailsPresenter(val request: Request) : BasePresenter<Doctor
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     createTask(it)
+                }, {
+                    it.printStackTrace()
+                })
+        )
+
+        unsubscribeOnDestroy(
+            EventInteractor.getEventObservable<UpdateHomePointEvent>()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    setHomePoint(it.latLng)
                 }, {
                     it.printStackTrace()
                 })

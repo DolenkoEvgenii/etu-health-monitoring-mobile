@@ -12,8 +12,10 @@ import ru.etu.monitoring.model.data.RequestTask
 import ru.etu.monitoring.model.network.data.request.AcceptOrderRequest
 import ru.etu.monitoring.model.network.data.request.ChangeTaskRequest
 import ru.etu.monitoring.model.network.data.request.CreateTaskRequest
+import ru.etu.monitoring.model.network.data.request.SetHomePointRequest
 import ru.etu.monitoring.model.network.data.response.BaseResponse
 import ru.etu.monitoring.model.network.data.response.request.ConfirmAcceptOrderResponse
+import ru.etu.monitoring.model.network.data.response.request.SetHomePointResponse
 import ru.etu.monitoring.model.network.data.response.task.ChangeTaskResponse
 import ru.etu.monitoring.model.network.data.response.task.RequestTasksResponse
 
@@ -35,6 +37,9 @@ interface DoctorApi {
 
     @POST("task/create")
     fun createTask(@Body request: CreateTaskRequest): Observable<Response<BaseResponse<List<RequestTask>>>>
+
+    @POST("order/home-coordinates")
+    fun setHomePoint(@Body request: SetHomePointRequest): Observable<Response<BaseResponse<SetHomePointResponse>>>
 
     @POST("task/mark-remove")
     fun markTaskDelete(@Body request: ChangeTaskRequest): Observable<Response<BaseResponse<ChangeTaskResponse>>>

@@ -131,6 +131,12 @@ inline val Context.clipboardManager: ClipboardManager?
     get() = getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
 
 /**
+ * Extension method to get activityManager for Context.
+ */
+inline val Context.activityManager: ActivityManager?
+    get() = getSystemService(ACTIVITY_SERVICE) as? ActivityManager
+
+/**
  * Extension method to dail telephone number for Context.
  */
 fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$tel")))

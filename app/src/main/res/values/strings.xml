@@ -69,4 +69,6 @@
     <string name="title_activity_map">Map</string>
     <string name="select_home_point">Выберите домашнюю точку</string>
     <string name="save">Сохранить</string>
+    <string name="need_location_permissions_message">Для работы приложения необходимо доступ к геолокации</string>
+    <string name="request_permissions">Запросить разрешения</string>
 </resources>

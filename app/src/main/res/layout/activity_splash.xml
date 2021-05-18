@@ -10,4 +10,30 @@
         android:layout_gravity="center"
         android:src="@drawable/heart" />
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/vNeedLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/need_location_permissions_message"
+            android:textColor="@android:color/black" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btRequestPermissions"
+            style="@style/MainButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/request_permissions" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </FrameLayout>

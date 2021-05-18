@@ -1,8 +1,12 @@
 package ru.etu.monitoring.ui.fragment.main
 
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +23,7 @@ import ru.etu.monitoring.model.data.RequestTask
 import ru.etu.monitoring.model.data.User
 import ru.etu.monitoring.presentation.presenter.main.MainPatientPresenter
 import ru.etu.monitoring.presentation.view.main.MainPatientView
+import ru.etu.monitoring.service.LocationTrackingService
 import ru.etu.monitoring.ui.adapter.item.RequestTaskItem
 import ru.etu.monitoring.ui.fragment.BaseMvpFragment
 import ru.etu.monitoring.utils.helpers.click
@@ -28,6 +33,19 @@ import ru.etu.monitoring.utils.helpers.visible
 class MainPatientFragment : BaseMvpFragment(), MainPatientView, RequestTaskItem.RequestTaskItemListener {
     @InjectPresenter
     lateinit var presenter: MainPatientPresenter
+
+    private var serviceRef: LocationTrackingService? = null
+
+    private val serviceConnection = object : ServiceConnection {
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            val binder = service as LocationTrackingService.MyLocalBinder
+            serviceRef = binder.getService()
+        }
+
+        override fun onServiceDisconnected(name: ComponentName) {
+            serviceRef = null
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_patient_main, container, false)
@@ -126,6 +144,37 @@ class MainPatientFragment : BaseMvpFragment(), MainPatientView, RequestTaskItem.
         }
         appBar.addView(toolbar)
         return toolbar
+    }
+
+    // Location Service Part
+    override fun bindService() {
+        val serviceIntent = Intent(context, LocationTrackingService::class.java)
+        context?.bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
+    }
+
+    override fun startTrackingService() {
+        val serviceIntent = Intent(context, LocationTrackingService::class.java)
+        context?.startService(serviceIntent)
+        bindService()
+    }
+
+    override fun stopTrackingService() {
+        unbindService()
+        context?.stopService(Intent(context, LocationTrackingService::class.java))
+        serviceRef = null
+    }
+
+    private fun unbindService() {
+        try {
+            context?.unbindService(serviceConnection)
+        } catch (exc: Exception) {
+            exc.printStackTrace()
+        }
+    }
+
+    override fun onDestroy() {
+        unbindService()
+        super.onDestroy()
     }
 
     companion object {

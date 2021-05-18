@@ -1,9 +1,11 @@
 package ru.etu.monitoring.ui.activity
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -12,6 +14,10 @@ import ru.etu.monitoring.R
 import ru.etu.monitoring.Screens
 import ru.etu.monitoring.model.network.user.UserRepository
 import ru.etu.monitoring.ui.activity.base.BaseMvpFragmentActivity
+import ru.etu.monitoring.utils.helpers.click
+import ru.etu.monitoring.utils.helpers.gone
+import ru.etu.monitoring.utils.helpers.visible
+import ru.etu.monitoring.utils.manager.location.checkLocationPermissions
 import ru.terrakok.cicerone.Router
 
 
@@ -24,9 +30,39 @@ class SplashActivity : BaseMvpFragmentActivity() {
         setContentView(R.layout.activity_splash)
 
         hideStatusBar()
+        ivIcon.start()
+        requestPermissions()
+
+        btRequestPermissions.click {
+            requestPermissions()
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun requestPermissions() {
+        checkLocationPermissions()
+            .observeOn(AndroidSchedulers.mainThread())
+            .compose(bindToLifecycle())
+            .subscribe({
+                if (it) {
+                    showAnim()
+                } else {
+                    showNeedLocationMessage()
+                }
+            }, {
+                it.printStackTrace()
+                showNeedLocationMessage()
+            })
+    }
+
+    private fun showNeedLocationMessage() {
+        vNeedLocation.visible()
+    }
+
+    private fun showAnim() {
+        vNeedLocation.gone()
         lifecycleScope.launch {
-            ivIcon.start()
-            delay(2400)
+            delay(2500)
 
             if (userRepo.isAuthorized) {
                 router.newRootScreen(Screens.MainActivityScreen())

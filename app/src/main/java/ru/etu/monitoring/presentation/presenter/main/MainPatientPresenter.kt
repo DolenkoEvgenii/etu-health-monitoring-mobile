@@ -1,6 +1,6 @@
 package ru.etu.monitoring.presentation.presenter.main
 
-import android.util.Log
+import android.content.Context
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import moxy.InjectViewState
@@ -13,6 +13,7 @@ import ru.etu.monitoring.model.network.user.UserRepository
 import ru.etu.monitoring.model.preference.UserPreferences
 import ru.etu.monitoring.presentation.presenter.BasePresenter
 import ru.etu.monitoring.presentation.view.main.MainPatientView
+import ru.etu.monitoring.service.LocationTrackingService
 import ru.etu.monitoring.utils.helpers.showErrorToast
 import ru.terrakok.cicerone.Router
 
@@ -22,12 +23,17 @@ class MainPatientPresenter : BasePresenter<MainPatientView>() {
     private val userPreferences: UserPreferences by inject()
     private val patientRepository: PatientRepository by inject()
     private val router: Router by inject()
+    private val context: Context by inject()
 
     private val model = PatientMainModel()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         sendFirebaseTokenToServer()
+
+        if (isTrackingServiceRunning()) {
+            viewState.bindService()
+        }
     }
 
     fun onImIllClick() {
@@ -75,7 +81,11 @@ class MainPatientPresenter : BasePresenter<MainPatientView>() {
                 .subscribe({
                     if (it.isIll) {
                         loadTasks(it.orderId ?: 0)
+                        if (!isTrackingServiceRunning()) {
+                            viewState.startTrackingService()
+                        }
                     } else {
+                        viewState.stopTrackingService()
                         viewState.closeLoadingDialog()
                     }
                     viewState.bindProfile(it)
@@ -120,5 +130,9 @@ class MainPatientPresenter : BasePresenter<MainPatientView>() {
                     it.printStackTrace()
                 })
         )
+    }
+
+    private fun isTrackingServiceRunning(): Boolean {
+        return LocationTrackingService.isServiceRunning(context)
     }
 }
